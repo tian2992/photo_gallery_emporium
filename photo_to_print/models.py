@@ -1,6 +1,8 @@
 from django.db import models
+from wagtail import images
 
 # Create your models here.
+ImageModel = images.get_image_model()
 
 
 class Reservation(models.Model):
@@ -29,3 +31,9 @@ class Coupon(models.Model):
     discount_code = models.TextField()
     # user_reference = models.TextField
     payment_applied_to = models.ForeignKey(Payment, on_delete=models.CASCADE)
+
+
+class Order(models.Model):
+
+    person = models.TextField() #FIXME: make into a user-like model maybe (?)
+    photo = ImageModel()
