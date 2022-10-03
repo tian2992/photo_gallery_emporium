@@ -36,4 +36,13 @@ class Coupon(models.Model):
 class Order(models.Model):
 
     person = models.TextField() #FIXME: make into a user-like model maybe (?)
-    photo = ImageModel()
+    # photo = ImageModel()
+    photo = models.ForeignKey(
+        'wagtailimages.Image', ## https://docs.wagtail.org/en/latest/releases/2.0.html#wagtail-module-path-updates
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    payment = models.ForeignKey(to=Payment, on_delete=models.SET_NULL)
+
