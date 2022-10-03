@@ -24,3 +24,8 @@ class Payment(models.Model):
     def get_payment_status(self) -> PaymentStatus:
         return PaymentStatus[self.status]
 
+
+class Coupon(models.Model):
+    discount_code = models.TextField()
+    # user_reference = models.TextField
+    payment_applied_to = models.ForeignKey(Payment, on_delete=models.CASCADE)
