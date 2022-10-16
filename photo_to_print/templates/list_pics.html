@@ -5,16 +5,64 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        /* https://www.smashingmagazine.com/native-css-masonry-layout-css-grid/ */
+        body{
+            background: linear-gradient(135deg, #bd0043, #47bdb6);
+}
+
+        img {
+  max-width: 100%;
+            height: auto;
+  display: block;
+}
+
+
+figure {
+  margin: 0;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  margin-bottom: 10px;
+  break-inside: avoid;
+}
+
+figure > img {
+  grid-row: 1 / -1;
+  grid-column: 1;
+}
+
+figure a {
+  color: black;
+  text-decoration: none;
+}
+
+figcaption {
+  grid-row: 2;
+  grid-column: 1;
+  background-color: rgba(255,255,255,.5);
+  padding: .2em .5em;
+  justify-self: start;
+}
+
+#pic_container {
+  column-count: 4;
+  column-gap: 10px;
+}
+
+
+    </style>
 </head>
 <body>
 
-
-{% for photo in pics_list %}
-    {% image photo  max-1920x1920 as tmp_photo %}
-
-<img src="{{ tmp_photo.url }}" width="{{ tmp_photo.width }}"
-    height="{{ tmp_photo.height }}" alt="{{ tmp_photo.alt }}" class="my-custom-class" />
-{% endfor %}
-
+<div id="pic_container">
+    {% for photo in pics_list %}
+        {% image photo  max-1920x1920 as tmp_photo %}
+  <figure>
+    <img  src="{{ tmp_photo.url }}" width="{{ tmp_photo.width }}"
+        height="{{ tmp_photo.height }}" alt="{{ tmp_photo.alt }}" class="my-custom-class" />
+         <figcaption><a href="#">1</a></figcaption>
+  </figure>
+    {% endfor %}
+</div>
 </body>
 </html>
