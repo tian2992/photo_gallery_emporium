@@ -8,11 +8,14 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
 
+import photo_to_print.views
+
 urlpatterns = [
     path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("search/", search_views.search, name="search"),
+    path("list/", photo_to_print.views.show_images, name='list_images')
 ]
 
 
