@@ -1,6 +1,5 @@
-{% extends "base.html" %}
 {% load static %}
-{% load wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,13 +7,13 @@
     <title>Title</title>
 </head>
 <body>
+
+
 {% for photo in pics_list %}
-    {% image photo width-400 as tmp_photo %}
+    {% image photo  max-1920x1920 as tmp_photo %}
 
 <img src="{{ tmp_photo.url }}" width="{{ tmp_photo.width }}"
     height="{{ tmp_photo.height }}" alt="{{ tmp_photo.alt }}" class="my-custom-class" />
-    {{ photo }}
-{% image photo max-1920x1920 %}
 {% endfor %}
 
 </body>
