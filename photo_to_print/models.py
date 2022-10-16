@@ -46,3 +46,5 @@ class Order(models.Model):
     )
     payment = models.ForeignKey(to=Payment, null=True, on_delete=models.SET_NULL)
 
+
+# TODO: Make page model for image page
